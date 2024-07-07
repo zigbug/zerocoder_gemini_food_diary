@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ListItem extends StatelessWidget {
+class DayFoodListItem extends StatelessWidget {
   final String dishName;
   final String time;
   final String protein;
@@ -8,7 +8,7 @@ class ListItem extends StatelessWidget {
   final String carbs;
   final String calories;
 
-  const ListItem({
+  const DayFoodListItem({
     super.key,
     required this.dishName,
     required this.time,

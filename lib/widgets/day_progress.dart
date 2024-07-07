@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import 'list_item.dart';
+import 'day_food_list.dart';
 
 class DayProgress extends StatelessWidget {
   const DayProgress({
@@ -30,7 +29,7 @@ class DayProgress extends StatelessWidget {
                           color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'К.кал',
                         style: TextStyle(
                           fontSize: 20,
@@ -63,7 +62,7 @@ class DayProgress extends StatelessWidget {
                               color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Белки',
                             style: TextStyle(
                               fontSize: 14,
@@ -85,7 +84,7 @@ class DayProgress extends StatelessWidget {
                               color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Жиры',
                             style: TextStyle(
                               fontSize: 14,
@@ -113,7 +112,7 @@ class DayProgress extends StatelessWidget {
                               color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Углеводы',
                             style: TextStyle(
                               fontSize: 14,
@@ -135,7 +134,7 @@ class DayProgress extends StatelessWidget {
                               color: Theme.of(context).colorScheme.secondary,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Вода',
                             style: TextStyle(
                               fontSize: 14,
@@ -152,27 +151,6 @@ class DayProgress extends StatelessWidget {
               ),
             ),
           ],
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'Задачи',
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-        const SizedBox(height: 16),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 30, // Замените на фактическое количество задач
-          itemBuilder: (context, index) {
-            return ListItem(
-                dishName: "яичница $index",
-                time: DateFormat('dd MM yyyy, HH:mm')
-                    .format(DateTime.now()), // Форматирование даты
-                protein: index.toString(),
-                fat: index.toString(),
-                carbs: index.toString(),
-                calories: index.toString());
-          },
         ),
       ],
     );

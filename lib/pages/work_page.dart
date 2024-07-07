@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
+import '../widgets/day_food_list.dart';
 import '../widgets/day_progress.dart';
-import '../widgets/list_item.dart'; // Import intl package
+import '../widgets/history_widget.dart';
+import '../widgets/today_widget.dart';
 
 class WorkPage extends StatefulWidget {
   const WorkPage({super.key});
@@ -14,8 +14,8 @@ class WorkPage extends StatefulWidget {
 class _WorkPageState extends State<WorkPage> {
   int _selectedIndex = 0;
   final List<String> _bottomNavigationBarTitles = [
-    'Домой',
-    'Работа',
+    'День',
+    'История',
     'Настройки',
     'Профиль',
   ];
@@ -37,13 +37,13 @@ class _WorkPageState extends State<WorkPage> {
                 theme.colorScheme.secondary,
                 theme.colorScheme.primary,
               ],
-              stops: [0.1, 0.8],
+              stops: const [0.1, 0.8],
               tileMode: TileMode.repeated),
         ),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: DayProgress(),
+            child: _buildBody(context),
           ),
         ),
       ),
@@ -57,11 +57,11 @@ class _WorkPageState extends State<WorkPage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Домой',
+            label: 'День',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.work),
-            label: 'Работа',
+            label: 'История',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
@@ -76,9 +76,22 @@ class _WorkPageState extends State<WorkPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        tooltip: 'Добавить задачу',
+        tooltip: 'Gemini',
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    switch (_selectedIndex) {
+      case 0:
+        return const TodayWidget();
+      case 1:
+        return const HistoryWidget();
+      default:
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+    }
   }
 }
