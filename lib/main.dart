@@ -34,4 +34,34 @@ ThemeData _themeData(BuildContext context) => ThemeData(
         onSurface: Colors.black,
       ),
       useMaterial3: true,
+      // Modern approach for text styles
+      textTheme: Typography.blackMountainView.copyWith(
+        labelSmall: const TextStyle(color: Colors.white),
+        // Customize button text style
+        // button: const TextStyle(color: Colors.white),
+        // Customize body text styles
+        bodyLarge: const TextStyle(color: Colors.white),
+        bodyMedium: const TextStyle(color: Colors.white),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: WidgetStateProperty.all(const Color(0xFF420B56)),
+          foregroundColor: WidgetStateProperty.all(
+            Colors.white,
+          ),
+          textStyle: WidgetStateProperty.all(const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          )),
+        ),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: const Color(0xFF420B56),
+      ),
+
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: const TextStyle(color: Colors.white),
+        labelStyle: const TextStyle(color: Colors.white),
+      ),
     );

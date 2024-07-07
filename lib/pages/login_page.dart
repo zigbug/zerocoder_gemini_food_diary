@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -22,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
               colors: _isRegistration
                   ? [theme.colorScheme.primary, theme.colorScheme.secondary]
                   : [theme.colorScheme.secondary, theme.colorScheme.primary],
-              stops: [0.3, 0.9],
+              stops: const [0.3, 0.9],
               tileMode: TileMode.repeated),
         ),
         child: Center(
@@ -31,9 +33,10 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                if (!_isRegistration) const SizedBox(height: 60),
                 TextField(
                   decoration: InputDecoration(
-                    labelText: 'Логин',
+                    labelText: 'e-mail',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -62,14 +65,21 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 const SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const WorkPage()));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.primary,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     textStyle: const TextStyle(fontSize: 18),
                   ),
-                  child: const Text('Войти'),
+                  child: Text(
+                    _isRegistration ? 'Зарегистрироваться' : 'Войти',
+                  ),
                 ),
                 const SizedBox(height: 20),
                 TextButton(
@@ -79,8 +89,8 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   },
                   child: !_isRegistration
-                      ? const Text('У меня ещё нет аккаунта')
-                      : const Text('У меня уже есть аккаунт'),
+                      ? const Text('У меня ещё нет аккаунта...')
+                      : const Text('У меня уже есть аккаунт...'),
                 ),
               ],
             ),
