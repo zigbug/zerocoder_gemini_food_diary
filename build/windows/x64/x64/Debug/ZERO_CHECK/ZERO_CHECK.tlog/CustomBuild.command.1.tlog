@@ -1,0 +1,10 @@
+^E:\ZERO_CODER\ZEROCODER_GEMINI_FOOD_DIARY-1\BUILD\WINDOWS\X64\CMAKEFILES\B5D134D49B05E628D9ADA25A24074575\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SE:/zero_coder/zerocoder_gemini_food_diary-1/windows -BE:/zero_coder/zerocoder_gemini_food_diary-1/build/windows/x64 --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/zero_coder/zerocoder_gemini_food_diary-1/build/windows/x64/gemeni_food_diary.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

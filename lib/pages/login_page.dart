@@ -1,8 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:gemeni_food_diary/pages/home_page.dart';
-// import 'package:gemeni_food_diary/auth_service.dart';
-// import 'package:gemeni_food_diary/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,122 +8,85 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
+  bool _isRegistration = false;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              TextFormField(
-                controller: _emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: _isRegistration
+                  ? [theme.colorScheme.primary, theme.colorScheme.secondary]
+                  : [theme.colorScheme.secondary, theme.colorScheme.primary],
+              stops: [0.3, 0.9],
+              tileMode: TileMode.repeated),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Логин',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16.0),
-              TextFormField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: 'Password',
+                const SizedBox(height: 20),
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Пароль',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 32.0),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                     Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const MyHomePage(
-                              title: 'Gemeni Food Diary',
-                            ),
-                          ),);
-                    // AuthService.signInWithEmailAndPassword(
-                    //     _emailController.text, _passwordController.text)
-                    //     .then((user) {
-                    //   if (user != null) {
-                    //     Navigator.pushReplacement(
-                    //       context,
-                    //       MaterialPageRoute(
-                    //         builder: (context) => const HomePage(),
-                    //       ),
-                    //     );
-                    //   }
-                    // });
-                  }
-                },
-                child: const Text('Login'),
-              ),
-            ],
+                if (_isRegistration) const SizedBox(height: 20),
+                if (_isRegistration)
+                  TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: 'Повтор пароля',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: theme.colorScheme.primary,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50, vertical: 15),
+                    textStyle: const TextStyle(fontSize: 18),
+                  ),
+                  child: const Text('Войти'),
+                ),
+                const SizedBox(height: 20),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _isRegistration = !_isRegistration;
+                    });
+                  },
+                  child: !_isRegistration
+                      ? const Text('У меня ещё нет аккаунта')
+                      : const Text('У меня уже есть аккаунт'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-// // ```
-
-
-// // We generate the following patches:
-// // File: /Users/zigbug/zero_coder/gemeni_food_diary/lib/login_page.dart
-// // ```
-// // --- a/Users/zigbug/zero_coder/gemeni_food_diary/lib/login_page.dart
-// // +++ b/Users/zigbug/zero_coder/gemeni_food_diary/lib/login_page.dart
-// // @@ -1,6 +1,7 @@
-//  import 'package:flutter/material.dart';
-//  import 'package:gemeni_food_diary/auth_service.dart';
-//  import 'package:gemeni_food_diary/home_page.dart';
-// +import 'package:gemeni_food_diary/signup_page.dart';
- 
-//  class LoginPage extends StatefulWidget {
-//    const LoginPage({Key? key}) : super(key: key);
-// @@ -83,6 +84,17 @@
-//                  },
-//                  child: const Text('Login'),
-//                ),
-// +              const SizedBox(height: 16.0),
-// +              TextButton(
-// +                onPressed: () {
-// +                  Navigator.push(
-// +                    context,
-// +                    MaterialPageRoute(
-// +                      builder: (context) => const SignupPage(),
-// +                    ),
-// +                  );
-// +                },
-// +                child: const Text('Don\'t have an account? Sign up'),
-//              ],
-//            ),
-//          ),

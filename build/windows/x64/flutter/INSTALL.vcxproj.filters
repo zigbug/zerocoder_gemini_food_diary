@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\zero_coder\zerocoder_gemini_food_diary-1\build\windows\x64\CMakeFiles\f5242637b95b61c68124489c282b8d16\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B6F40A60-D407-3382-95FC-B7687FA8AB61}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
