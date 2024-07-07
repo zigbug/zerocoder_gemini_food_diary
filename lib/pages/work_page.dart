@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/day_food_list.dart';
-import '../widgets/day_progress.dart';
 import '../widgets/history_widget.dart';
+import '../widgets/profile_widget.dart';
 import '../widgets/today_widget.dart';
 
 class WorkPage extends StatefulWidget {
@@ -88,6 +87,9 @@ class _WorkPageState extends State<WorkPage> {
         return const TodayWidget();
       case 1:
         return const HistoryWidget();
+      case 3:
+        return const ProfileWidget();
+
       default:
         return const Center(
           child: CircularProgressIndicator(),
