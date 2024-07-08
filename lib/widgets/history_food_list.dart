@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gemeni_food_diary/widgets/list_item.dart';
+import 'package:gemeni_food_diary/widgets/day_food_list_item.dart';
 import 'package:intl/intl.dart';
+
+import 'history_day_food_list_item.dart';
 
 class HistoryFoodfList extends StatelessWidget {
   const HistoryFoodfList({
@@ -22,8 +24,7 @@ class HistoryFoodfList extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: 30, // Замените на фактическое количество задач
           itemBuilder: (context, index) {
-            return DayFoodListItem(
-                dishName: "яичница $index",
+            return HistoryDayFoodListItem(
                 time: DateFormat('dd MM yyyy, HH:mm')
                     .format(DateTime.now()), // Форматирование даты
                 protein: index.toString(),

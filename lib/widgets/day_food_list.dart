@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gemeni_food_diary/widgets/list_item.dart';
+import 'package:gemeni_food_diary/widgets/day_food_list_item.dart';
 import 'package:intl/intl.dart';
 
 class DayFoodfList extends StatelessWidget {

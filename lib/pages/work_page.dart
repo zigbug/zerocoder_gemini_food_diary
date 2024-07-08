@@ -15,7 +15,7 @@ class _WorkPageState extends State<WorkPage> {
   final List<String> _bottomNavigationBarTitles = [
     'День',
     'История',
-    'Настройки',
+    'Цели',
     'Профиль',
   ];
 
@@ -64,7 +64,7 @@ class _WorkPageState extends State<WorkPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Настройки',
+            label: 'Цели',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
