@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'day_food_list.dart';
-
 class DayProgress extends StatelessWidget {
   const DayProgress({
     super.key,
@@ -21,8 +19,8 @@ class DayProgress extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       SizedBox(
-                        height: 200,
-                        width: 200,
+                        height: 160,
+                        width: 160,
                         child: CircularProgressIndicator(
                           value: 0.8, // Added value
                           strokeWidth: 10,
@@ -54,8 +52,8 @@ class DayProgress extends StatelessWidget {
                         alignment: Alignment.center,
                         children: [
                           SizedBox(
-                            height: 100,
-                            width: 100,
+                            height: 80,
+                            width: 80,
                             child: CircularProgressIndicator(
                               value: 0.8, // Added value
                               strokeWidth: 5,
@@ -76,8 +74,8 @@ class DayProgress extends StatelessWidget {
                         alignment: Alignment.center,
                         children: [
                           SizedBox(
-                            height: 100,
-                            width: 100,
+                            height: 80,
+                            width: 80,
                             child: CircularProgressIndicator(
                               value: 0.8, // Added value
                               strokeWidth: 5,
@@ -96,7 +94,7 @@ class DayProgress extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  // const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -104,8 +102,8 @@ class DayProgress extends StatelessWidget {
                         alignment: Alignment.center,
                         children: [
                           SizedBox(
-                            height: 100,
-                            width: 100,
+                            height: 80,
+                            width: 80,
                             child: CircularProgressIndicator(
                               value: 0.8, // Added value
                               strokeWidth: 5,
@@ -126,8 +124,8 @@ class DayProgress extends StatelessWidget {
                         alignment: Alignment.center,
                         children: [
                           SizedBox(
-                            height: 100,
-                            width: 100,
+                            height: 80,
+                            width: 80,
                             child: CircularProgressIndicator(
                               value: 0.8, // Added value
                               strokeWidth: 5,

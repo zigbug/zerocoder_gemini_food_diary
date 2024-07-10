@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gemeni_food_diary/pages/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:flutter_gemini/flutter_gemini.dart'; // Import the package
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Gemini.init(apiKey: 'AIzaSyBs8zXBIAkCrnuImKPH5Dv5mCrzcmH0huA');
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

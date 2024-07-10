@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
+import '../widgets/gemini_dialog.dart';
 import '../widgets/history_widget.dart';
 import '../widgets/profile_widget.dart';
 import '../widgets/today_widget.dart';
+import 'package:voice_to_text/voice_to_text.dart';
 
 class WorkPage extends StatefulWidget {
   const WorkPage({super.key});
@@ -11,6 +14,7 @@ class WorkPage extends StatefulWidget {
 }
 
 class _WorkPageState extends State<WorkPage> {
+  final _gemini = Gemini.instance;
   int _selectedIndex = 0;
   final List<String> _bottomNavigationBarTitles = [
     'День',
@@ -18,6 +22,20 @@ class _WorkPageState extends State<WorkPage> {
     'Цели',
     'Профиль',
   ];
+  final VoiceToText _speech = VoiceToText();
+  String text =
+      ""; //this is optional, I could get the text directly using speechResult
+  @override
+  void initState() {
+    super.initState();
+    _speech.initSpeech();
+    _speech.addListener(() {
+      setState(() {
+        text = _speech.speechResult;
+        print(text);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +73,15 @@ class _WorkPageState extends State<WorkPage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.today),
             label: 'День',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.work),
+            icon: Icon(Icons.history),
             label: 'История',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.grade),
             label: 'Цели',
           ),
           BottomNavigationBarItem(
@@ -74,7 +92,23 @@ class _WorkPageState extends State<WorkPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          _speech.isNotListening ? _speech.startListening : _speech.stop;
+          final response = await showDialog<String>(
+            context: context,
+            builder: (context) => GeminiDialog(
+              gemini: _gemini, // Pass the Gemini instance
+              initialPrompt: text, // Set the initial prompt
+            ),
+          );
+
+          // Handle the response from Gemini
+          if (response != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(response)),
+            );
+          }
+        },
         tooltip: 'Gemini',
         child: const Icon(Icons.add),
       ),
