@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileWidget extends StatefulWidget {
@@ -14,7 +15,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   final _ageController = TextEditingController();
   final _weightController = TextEditingController();
   final _heightController = TextEditingController();
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -117,7 +118,32 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   return null;
                 },
               ),
+              // Кнопка для верификации email
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () async {
+                  // Проверяем, авторизован ли пользователь
+                  if (_auth.currentUser != null &&
+                      !_auth.currentUser!.emailVerified) {
+                    // Отправляем письмо для верификации
+                    await _auth.currentUser!.sendEmailVerification();
+                    // Выводим сообщение пользователю
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('Письмо для верификации отправлено!')),
+                    );
+                  } else {
+                    // Выводим сообщение, если пользователь не авторизован
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('Пожалуйста, войдите в аккаунт')),
+                    );
+                  }
+                },
+                child: const Text('Верифицировать Email'),
+              ),
               const SizedBox(height: 32),
+
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.secondary,

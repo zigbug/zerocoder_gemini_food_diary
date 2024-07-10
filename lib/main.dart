@@ -6,6 +6,7 @@ import 'package:flutter_gemini/flutter_gemini.dart'; // Import the package
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //AIzaSyBwj9khKMNiSt3k7TzxldbNMBo4CEyOTFg
   Gemini.init(apiKey: 'AIzaSyBs8zXBIAkCrnuImKPH5Dv5mCrzcmH0huA');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

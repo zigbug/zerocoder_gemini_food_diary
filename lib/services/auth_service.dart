@@ -12,8 +12,13 @@ class AuthService {
   Future<UserCredential> registerWithEmailAndPassword(
       String email, String password) async {
     try {
-      return await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      // Отправка письма для верификации
+      await userCredential.user!.sendEmailVerification();
+
+      return userCredential;
     } catch (e) {
       rethrow; // Переброс ошибки
     }
@@ -53,6 +58,15 @@ class AuthService {
     try {
       await _auth.signOut();
       await _googleSignIn.signOut();
+    } catch (e) {
+      rethrow; // Переброс ошибки
+    }
+  }
+
+  // Верификация почты
+  Future<void> verifyEmail() async {
+    try {
+      await _auth.currentUser!.sendEmailVerification();
     } catch (e) {
       rethrow; // Переброс ошибки
     }

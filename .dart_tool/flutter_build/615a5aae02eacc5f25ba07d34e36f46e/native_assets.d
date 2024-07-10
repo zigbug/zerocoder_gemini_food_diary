@@ -1,0 +1,1 @@
+ E:\\zero_coder\\zerocoder_gemini_food_diary\\.dart_tool\\flutter_build\\615a5aae02eacc5f25ba07d34e36f46e\\native_assets.yaml: 
